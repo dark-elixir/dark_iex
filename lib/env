@@ -1,0 +1,4 @@
+# export ELIXIR_CLI_ECHO=true
+export IEX_WITH_WERL=true
+
+export ERL_AFLAGS="-kernel shell_history enabled"
