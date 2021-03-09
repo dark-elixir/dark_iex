@@ -13,6 +13,45 @@ defmodule DarkIEx do
 
   def configure do
     IEx.configure(config())
+
+    require Logger
+
+    Logger.configure(
+      # level: :error
+      # level: :alert
+      level: :emergency
+    )
+  end
+
+  defp time_remaining(expiration) do
+    total_seconds = DateTime.to_unix(expiration) - DateTime.to_unix(DateTime.utc_now())
+
+    hours = div(total_seconds, 3600)
+    minutes = div(rem(total_seconds, 3600), 60)
+    seconds = rem(total_seconds, 60)
+
+    hours_display =
+      if hours > 0 do
+        "#{hours}:"
+      else
+        ""
+      end
+
+    minutes_display =
+      if hours > 0 and minutes < 10 do
+        "0#{minutes}:"
+      else
+        "#{minutes}:"
+      end
+
+    seconds_display =
+      if seconds < 10 do
+        "0#{seconds}"
+      else
+        "#{seconds}"
+      end
+
+    "#{hours_display}#{minutes_display}#{seconds_display}"
   end
 
   def run do
@@ -97,6 +136,7 @@ defmodule DarkIEx do
         ######################################
         eval_interrupt: [:light_yellow, :bright],
         eval_result: [:yellow, :bright],
+        # eval_result: [ :green ],
         # eval_error: [:red, :bright, "💩✘ \n"],
         eval_error: [:red, :bright],
         eval_info: [:cyan, :bright],

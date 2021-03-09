@@ -95,6 +95,13 @@ defmodule IExPrompt do
   def greeting do
     """
     #{pp([phrase(:greeting)])}
+    #{
+      pp([
+        :blue_background,
+        # "                                  IEx.Helpers                                   "
+        "                               DarkElixir.DarkIEx                               "
+      ])
+    }
     """
   end
 

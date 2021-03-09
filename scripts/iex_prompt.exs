@@ -82,6 +82,13 @@ defmodule IExPrompt do
 
   def notice do
     """
+    \n#{
+      pp([
+        :blue_background,
+        # "                                  IEx.Helpers                                   "
+        "                               DarkElixir.DarkIEx                               "
+      ])
+    }
     \n#{pp([phrase(:notice)])}
     """
   end
